@@ -1,7 +1,158 @@
 
 #include "pitches.h"  // 音階
 #include "temp_118.h"  // 1分間に四分音符118のテンポ
-uint8_t  PinNumber = 8;
+
+#define BLUE 9
+#define GREEN 10
+#define RED 11
+#define BUTTON_START 4 //Yellow Harnes
+#define BUTTON_STOP 2 //Orange Harnes
+
+uint8_t  PinNumber = 6; 
+volatile int iB_START;   //start button
+volatile int iB_STOP;    //stop button
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(RED, OUTPUT);
+  pinMode(GREEN, OUTPUT);
+  pinMode(BLUE, OUTPUT);
+  digitalWrite(RED, HIGH);
+  digitalWrite(GREEN, LOW);
+  digitalWrite(BLUE, LOW);
+  Serial.begin(115200);
+  pinMode(BUTTON_START, INPUT_PULLUP);
+  pinMode(BUTTON_STOP, INPUT_PULLUP);
+}
+
+void APMMarch_Melody(){
+  //32 bar 118temp
+    tone(PinNumber, NOTE_E5, HalfNote118_t);
+    delay(HalfNote118);
+    tone(PinNumber, NOTE_D5, HalfNote118_t);
+    delay(HalfNote118);
+
+    //33 bar 118temp
+    tone(PinNumber, NOTE_E5, EighthNote118);
+    delay(EighthNote118);
+    tone(PinNumber, NOTE_D5, EighthNote118);
+    delay(EighthNote118); 
+    tone(PinNumber, NOTE_E5, EighthNote118);
+    delay(EighthNote118);
+    tone(PinNumber, NOTE_F5, EighthNote118);
+    delay(EighthNote118);
+    tone(PinNumber, NOTE_D5, QuarterNote118);
+    delay(QuarterNote118); 
+    tone(PinNumber, NOTE_B4, QuarterNote118);
+    delay(QuarterNote118);
+
+    //34 bar 118temp
+    tone(PinNumber, NOTE_C5, QuarterNote118);
+    delay(QuarterNote118);
+    tone(PinNumber, NOTE_G4, QuarterNote118);
+    delay(QuarterNote118); 
+    tone(PinNumber, NOTE_A4, QuarterNote118); 
+    delay(QuarterNote118);
+    tone(PinNumber, NOTE_B4, QuarterNote118); 
+    delay(QuarterNote118);
+
+    //35 bar 118temp
+    tone(PinNumber, NOTE_C5, HalfNoteDot118);
+    delay(WholeNote118);
+
+    //1 bar 118temp
+    tone(PinNumber, NOTE_B3, EighthNote118);
+    delay(EighthNote118);
+    tone(PinNumber, NOTE_C4, EighthNote118);
+    delay(EighthNote118);
+    tone(PinNumber, NOTE_D4, EighthNote118);
+    delay(EighthNote118); 
+    tone(PinNumber, NOTE_E4, EighthNote118);
+    delay(EighthNote118); 
+    tone(PinNumber, NOTE_F4, QuarterNote118);
+    delay(QuarterNote118);
+    tone(PinNumber, NOTE_B4, QuarterNote118);
+    delay(QuarterNote118);
+    
+    //2 bar 118temp
+    tone(PinNumber, NOTE_G4, QuarterNote118);
+    delay(QuarterNote118);
+    tone(PinNumber, NOTE_F4, EighthNote118);
+    delay(EighthNote118); 
+    tone(PinNumber, NOTE_E4, EighthNote118);
+    delay(EighthNote118);
+    tone(PinNumber, NOTE_F4, HalfNote118); 
+    delay(HalfNote118);
+    
+    //3 bar 118temp
+    tone(PinNumber, NOTE_E4, QuarterNote118);
+    delay(QuarterNote118);
+    tone(PinNumber, NOTE_D4, EighthNote118);
+    delay(EighthNote118); 
+    tone(PinNumber, NOTE_C4, EighthNote118);
+    delay(EighthNote118);
+    tone(PinNumber, NOTE_D4, QuarterNote118); 
+    delay(QuarterNote118);
+    tone(PinNumber, NOTE_B3, QuarterNote118);
+    delay(QuarterNote118);
+    
+    //4 bar 118temp
+    tone(PinNumber, NOTE_C4, EighthNote118);
+    delay(EighthNote118);
+    tone(PinNumber, NOTE_C4, EighthNote118);
+    delay(EighthNote118); 
+    tone(PinNumber, NOTE_C4, EighthNote118);
+    delay(EighthNote118);
+    tone(PinNumber, NOTE_D4, EighthNote118); 
+    delay(EighthNote118);
+    tone(PinNumber, NOTE_C4, HalfNote118_t);  //二分音符仮置き
+    delay(HalfNote118);
+
+    //5 bar 118temp
+    tone(PinNumber, NOTE_B3, EighthNote118);
+    delay(EighthNote118);
+    tone(PinNumber, NOTE_C4, EighthNote118);
+    delay(EighthNote118);
+    tone(PinNumber, NOTE_D4, EighthNote118);
+    delay(EighthNote118); 
+    tone(PinNumber, NOTE_E4, EighthNote118);
+    delay(EighthNote118); 
+    tone(PinNumber, NOTE_F4, QuarterNote118);
+    delay(QuarterNote118);
+    tone(PinNumber, NOTE_B4, QuarterNote118);
+    delay(QuarterNote118);
+
+    //6 bar 118temp
+    tone(PinNumber, NOTE_G4, QuarterNote118);
+    delay(QuarterNote118);
+    tone(PinNumber, NOTE_F4, EighthNote118);
+    delay(EighthNote118); 
+    tone(PinNumber, NOTE_E4, EighthNote118);
+    delay(EighthNote118);
+    tone(PinNumber, NOTE_F4, HalfNote118_t);   //二分音符仮置き
+    delay(HalfNote118);
+
+    //7 bar 118temp
+    tone(PinNumber, NOTE_E4, QuarterNote118);
+    delay(QuarterNote118);
+    tone(PinNumber, NOTE_D4, EighthNote118);
+    delay(EighthNote118); 
+    tone(PinNumber, NOTE_C4, EighthNote118);
+    delay(EighthNote118);
+    tone(PinNumber, NOTE_D4, QuarterNote118); 
+    delay(QuarterNote118);
+    tone(PinNumber, NOTE_B3, QuarterNote118);
+    delay(QuarterNote118);
+
+    //8 bar 118temp
+    tone(PinNumber, NOTE_C4, QuarterNoteDot118);
+    delay(QuarterNoteDot118);
+    tone(PinNumber, NOTE_F4, EighthNote118);
+    delay(EighthNote118); 
+    tone(PinNumber, NOTE_B3, HalfNote118_t);   //二分音符仮置き
+    delay(HalfNote118);
+
+}
 
 void APMMarch_Sabi(){
     //9 bar 118temp
@@ -240,132 +391,7 @@ void APMMarch(){
 
   for(int i = 0; i < 2; i++)
   {
-    //32 bar 118temp
-    tone(PinNumber, NOTE_E5, HalfNote118_t);
-    delay(HalfNote118);
-    tone(PinNumber, NOTE_D5, HalfNote118_t);
-    delay(HalfNote118);
-
-    //33 bar 118temp
-    tone(PinNumber, NOTE_E5, EighthNote118);
-    delay(EighthNote118);
-    tone(PinNumber, NOTE_D5, EighthNote118);
-    delay(EighthNote118); 
-    tone(PinNumber, NOTE_E5, EighthNote118);
-    delay(EighthNote118);
-    tone(PinNumber, NOTE_F5, EighthNote118);
-    delay(EighthNote118);
-    tone(PinNumber, NOTE_D5, QuarterNote118);
-    delay(QuarterNote118); 
-    tone(PinNumber, NOTE_B4, QuarterNote118);
-    delay(QuarterNote118);
-
-    //34 bar 118temp
-    tone(PinNumber, NOTE_C5, QuarterNote118);
-    delay(QuarterNote118);
-    tone(PinNumber, NOTE_G4, QuarterNote118);
-    delay(QuarterNote118); 
-    tone(PinNumber, NOTE_A4, QuarterNote118); 
-    delay(QuarterNote118);
-    tone(PinNumber, NOTE_B4, QuarterNote118); 
-    delay(QuarterNote118);
-
-    //35 bar 118temp
-    tone(PinNumber, NOTE_C5, HalfNoteDot118);
-    delay(WholeNote118);
-
-    //1 bar 118temp
-    tone(PinNumber, NOTE_B3, EighthNote118);
-    delay(EighthNote118);
-    tone(PinNumber, NOTE_C4, EighthNote118);
-    delay(EighthNote118);
-    tone(PinNumber, NOTE_D4, EighthNote118);
-    delay(EighthNote118); 
-    tone(PinNumber, NOTE_E4, EighthNote118);
-    delay(EighthNote118); 
-    tone(PinNumber, NOTE_F4, QuarterNote118);
-    delay(QuarterNote118);
-    tone(PinNumber, NOTE_B4, QuarterNote118);
-    delay(QuarterNote118);
-    
-    //2 bar 118temp
-    tone(PinNumber, NOTE_G4, QuarterNote118);
-    delay(QuarterNote118);
-    tone(PinNumber, NOTE_F4, EighthNote118);
-    delay(EighthNote118); 
-    tone(PinNumber, NOTE_E4, EighthNote118);
-    delay(EighthNote118);
-    tone(PinNumber, NOTE_F4, HalfNote118); 
-    delay(HalfNote118);
-    
-    //3 bar 118temp
-    tone(PinNumber, NOTE_E4, QuarterNote118);
-    delay(QuarterNote118);
-    tone(PinNumber, NOTE_D4, EighthNote118);
-    delay(EighthNote118); 
-    tone(PinNumber, NOTE_C4, EighthNote118);
-    delay(EighthNote118);
-    tone(PinNumber, NOTE_D4, QuarterNote118); 
-    delay(QuarterNote118);
-    tone(PinNumber, NOTE_B3, QuarterNote118);
-    delay(QuarterNote118);
-    
-    //4 bar 118temp
-    tone(PinNumber, NOTE_C4, EighthNote118);
-    delay(EighthNote118);
-    tone(PinNumber, NOTE_C4, EighthNote118);
-    delay(EighthNote118); 
-    tone(PinNumber, NOTE_C4, EighthNote118);
-    delay(EighthNote118);
-    tone(PinNumber, NOTE_D4, EighthNote118); 
-    delay(EighthNote118);
-    tone(PinNumber, NOTE_C4, HalfNote118_t);  //二分音符仮置き
-    delay(HalfNote118);
-
-    //5 bar 118temp
-    tone(PinNumber, NOTE_B3, EighthNote118);
-    delay(EighthNote118);
-    tone(PinNumber, NOTE_C4, EighthNote118);
-    delay(EighthNote118);
-    tone(PinNumber, NOTE_D4, EighthNote118);
-    delay(EighthNote118); 
-    tone(PinNumber, NOTE_E4, EighthNote118);
-    delay(EighthNote118); 
-    tone(PinNumber, NOTE_F4, QuarterNote118);
-    delay(QuarterNote118);
-    tone(PinNumber, NOTE_B4, QuarterNote118);
-    delay(QuarterNote118);
-
-    //6 bar 118temp
-    tone(PinNumber, NOTE_G4, QuarterNote118);
-    delay(QuarterNote118);
-    tone(PinNumber, NOTE_F4, EighthNote118);
-    delay(EighthNote118); 
-    tone(PinNumber, NOTE_E4, EighthNote118);
-    delay(EighthNote118);
-    tone(PinNumber, NOTE_F4, HalfNote118_t);   //二分音符仮置き
-    delay(HalfNote118);
-
-    //7 bar 118temp
-    tone(PinNumber, NOTE_E4, QuarterNote118);
-    delay(QuarterNote118);
-    tone(PinNumber, NOTE_D4, EighthNote118);
-    delay(EighthNote118); 
-    tone(PinNumber, NOTE_C4, EighthNote118);
-    delay(EighthNote118);
-    tone(PinNumber, NOTE_D4, QuarterNote118); 
-    delay(QuarterNote118);
-    tone(PinNumber, NOTE_B3, QuarterNote118);
-    delay(QuarterNote118);
-
-    //8 bar 118temp
-    tone(PinNumber, NOTE_C4, QuarterNoteDot118);
-    delay(QuarterNoteDot118);
-    tone(PinNumber, NOTE_F4, EighthNote118);
-    delay(EighthNote118); 
-    tone(PinNumber, NOTE_B3, HalfNote118_t);   //二分音符仮置き
-    delay(HalfNote118);
-
+    APMMarch_Melody();
     APMMarch_Sabi();
   }
 
@@ -417,58 +443,16 @@ void APMMarch(){
   
   APMMarch_Sabi();  //sabi
 
-  //30 bar 118temp
-  tone(PinNumber, NOTE_G5, EighthNote118);
-  delay(EighthNote118);
-  tone(PinNumber, NOTE_A5, EighthNote118);
-  delay(EighthNote118); 
-  tone(PinNumber, NOTE_B5, QuarterNote118); 
-  delay(QuarterNote118);
-  tone(PinNumber, NOTE_G5, EighthNote118);
-  delay(EighthNote118);
-  tone(PinNumber, NOTE_A5, EighthNote118);
-  delay(EighthNote118); 
-  tone(PinNumber, NOTE_B5, QuarterNote118); 
-  delay(QuarterNote118);
-
-  //30 bar 118temp
-  tone(PinNumber, NOTE_E5, EighthNote118);
-  delay(EighthNote118);
-  tone(PinNumber, NOTE_A5, EighthNote118);
-  delay(EighthNote118); 
-  tone(PinNumber, NOTE_B5, QuarterNote118); 
-  delay(QuarterNote118);
-  tone(PinNumber, NOTE_D5, QuarterNote118);
-  delay(HalfNoteDot118);  //4分音符分小節またぐ
-
-  //30 bar 118temp
-  //tone(PinNumber, NOTE_E4, QuarterNote118);
-  //delay(HalfNote118);
-  //tone(PinNumber, NOTE_D4, QuarterNote118);
-  //delay(HalfNote118);   //4分音符分小節またぐ
-
-  //30 bar 118temp
-  //tone(PinNumber, NOTE_C4, HalfNoteDot118);
-  //delay(HalfNoteDot118);
-
-  //30 bar 118temp
-  //tone(PinNumber, NOTE_B3, QuarterNote118);
-  //delay(QuarterNoteDot118);
-  //tone(PinNumber, NOTE_B3, EighthNote118);
-  //delay(EighthNote118); 
-  //tone(PinNumber, NOTE_B3, QuarterNote118); 
-  //delay(QuarterNote118);
-
 }
 
-void setup() {
-  // put your setup code here, to run once:
-}
 
 void loop() {
   
-  APMMarch();
-  // Output the voice after several minutes
-  delay(1000);
-   
+  iB_START = digitalRead(BUTTON_START);     //黄色配線のpush buttonの出力を代入
+  iB_STOP = digitalRead(BUTTON_STOP);     //オレンジ配線のpush buttonの出力を代入
+
+  if(iB_START == LOW)   //スタートボタン押下
+  {
+    APMMarch();
+  }
 }

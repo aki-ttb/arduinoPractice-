@@ -1,10 +1,10 @@
 /*************************************************
- * AnPanMan March's Score arry
+ * AnPanMan March's Score arry 
  *************************************************/
 #include "pitches.h"  // 音階
 #include "temp_118.h"  // 1分間に四分音符118のテンポ
 
-int NotePitchMelody[] = {   //音符の高さ 
+const PROGMEM int NotePitchMelody[] = {   //音符の高さをフラッシュメモリに書き込み
   NOTE_E5, NOTE_D5, 
   NOTE_E5, NOTE_D5, NOTE_E5, NOTE_F5, NOTE_D5, NOTE_B4,
   NOTE_C5, NOTE_G4, NOTE_A4, NOTE_B4,
@@ -24,7 +24,7 @@ int NotePitchMelody[] = {   //音符の高さ
   NOTE_C4, NOTE_F4, NOTE_B3 //OK
 };
 
-int NotePitchSabi[] = {   //音符の高さ sabi
+const PROGMEM int NotePitchSabi[] = {   //音符の高さ sabi
   //9 bar 118temp
   NOTE_C4, NOTE_D4, NOTE_C4, NOTE_C4, NOTE_D4, NOTE_C4,
   //10 bar 118temp
@@ -75,7 +75,7 @@ int NotePitchSabi[] = {   //音符の高さ sabi
   NOTE_B4  //OK
 };
 
-int NotePitchAida[] = {   //音符の高さ Aida 
+const PROGMEM int NotePitchAida[] = {   //音符の高さ Aida 
     //71 bar 118temp
   NOTE_B4, NOTE_C5, NOTE_D5, NOTE_E5, NOTE_F5, NOTE_B5,
     //72 bar 118temp
@@ -86,7 +86,7 @@ int NotePitchAida[] = {   //音符の高さ Aida
   NOTE_C5, NOTE_D5, NOTE_B4  //OK
 };
 
-long NoteTimeMelody[] = {  //音符の長さ melody
+const PROGMEM int NoteTimeMelody[] = {  //音符の長さ melody
     //32 bar 118temp
   HalfNote118_t, HalfNote118_t,
     //33 bar 118temp
@@ -113,7 +113,7 @@ long NoteTimeMelody[] = {  //音符の長さ melody
   QuarterNoteDot118, EighthNote118, HalfNote118_t
 };
 
-long NoteTimeSabi[] = {  //音符の長さ Sabi
+const PROGMEM long NoteTimeSabi[] = {  //音符の長さ Sabi
     //9 bar 118temp
   EighthNote118, EighthNote118, QuarterNote118, EighthNote118, EighthNote118, QuarterNote118,
     //10 bar 118temp
@@ -164,7 +164,7 @@ long NoteTimeSabi[] = {  //音符の長さ Sabi
   HalfNoteDot118 //OK
 };
 
-long NoteTimeAida[] = {  //音符の長さ Aida
+const PROGMEM long NoteTimeAida[] = {  //音符の長さ Aida
   //71 bar 118temp
   EighthNote118, EighthNote118, EighthNote118, EighthNote118, QuarterNote118, QuarterNote118,
   //72 bar 118temp
@@ -175,7 +175,7 @@ long NoteTimeAida[] = {  //音符の長さ Aida
   QuarterNoteDot118, EighthNote118, HalfNote118_t
 };
 
-long NoteIntervalMelody[] = {   //   音符と音符の間 Melody
+const PROGMEM long NoteIntervalMelody[] = {   //   音符と音符の間 Melody
     //32 bar 118temp
   HalfNote118, HalfNote118,
     //33 bar 118temp
@@ -202,7 +202,7 @@ long NoteIntervalMelody[] = {   //   音符と音符の間 Melody
   QuarterNoteDot118, EighthNote118, HalfNote118
 };
 
-long NoteIntervalSabi[] = {   //   音符と音符の間 Sabi
+const PROGMEM long NoteIntervalSabi[] = {   //   音符と音符の間 Sabi
     //9 bar 118temp
   EighthNote118, EighthNote118, QuarterNote118, EighthNote118, EighthNote118, QuarterNote118,
     //10 bar 118temp
@@ -253,7 +253,7 @@ long NoteIntervalSabi[] = {   //   音符と音符の間 Sabi
   WholeNote118 //OK
 };
 
-long NoteIntervalAida[] = {   //   音符と音符の間 Aida
+const PROGMEM long NoteIntervalAida[] = {   //   音符と音符の間 Aida
     //71 bar 118temp
   EighthNote118, EighthNote118, EighthNote118, EighthNote118, QuarterNote118, QuarterNote118,
   //72 bar 118temp
